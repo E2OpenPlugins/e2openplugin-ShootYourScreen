@@ -1,0 +1,112 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-09-11 09:10+0100\n"
+"PO-Revision-Date: 2011-09-11 09:10+0100\n"
+"Last-Translator: plnick\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/plugin.py:37
+msgid "Skin resolution"
+msgstr "Skin Auflösung"
+
+#: ../src/plugin.py:38
+msgid "no message"
+msgstr "keine Nachricht"
+
+#: ../src/plugin.py:42
+#: ../src/plugin.py:43
+msgid "make Screenshots with your VU+"
+msgstr "erstelle Screenshots mit Deiner VU+"
+
+#: ../src/plugin.py:66
+msgid ""
+"Sorry, your device for screenshots is not writeable.\n"
+"\n"
+"Please choose another one."
+msgstr ""
+"Entschuldigung, aber Ihr Speicherort für die\n"
+"Screenshots ist nicht beschreibbar\n"
+"\n"
+"Bitte wählen Sie einen anderen Speicherort."
+
+#: ../src/plugin.py:128
+#, python-format
+msgid ""
+"Screenshot successfully saved as:\n"
+"%s"
+msgstr ""
+"Screenshot gespeichert als:\n"
+"%s"
+
+#: ../src/plugin.py:130
+msgid "Grabbing Screenshot failed !!!"
+msgstr "Die Erzeugung des Screenshots ist fehlgeschlagen"
+
+#: ../src/plugin.py:199
+msgid "Exit"
+msgstr "Beenden"
+
+#: ../src/plugin.py:200
+msgid "Save"
+msgstr "Speichern"
+
+#: ../src/plugin.py:201
+msgid "Default"
+msgstr "Standard"
+
+#: ../src/plugin.py:214
+#, python-format
+msgid "ShootYourScreen for VU+ STB - %s"
+msgstr "ShootYourScreen für VU+ STB - %s"
+
+#: ../src/plugin.py:218
+msgid "Enable ShootYourScreen :"
+msgstr "Aktiviere ShootYourScreen :"
+
+#: ../src/plugin.py:220
+msgid "Screenshot of :"
+msgstr "Screenshot von :"
+
+#: ../src/plugin.py:221
+msgid "Format for screenshots :"
+msgstr "Bildformat der Screenshots :"
+
+#: ../src/plugin.py:223
+msgid "Quality of jpg picture :"
+msgstr "Qualität der jpg Bilder :"
+
+#: ../src/plugin.py:224
+msgid "Picture size (width) :"
+msgstr "Bildgröße (Breite) :"
+
+#: ../src/plugin.py:225
+msgid "Path for screenshots :"
+msgstr "Pfad für die Screenshots :"
+
+#: ../src/plugin.py:226
+msgid "Switch Help and Help long button :"
+msgstr "Tausche \"Hilfe\" und \"Hilfe lang\" Taste :"
+
+#: ../src/plugin.py:227
+msgid "Timeout for info message :"
+msgstr "Anzeigedauer der Infonachricht :"
+
+#: ../src/plugin.py:244
+msgid "Really close without saving settings?"
+msgstr "Wollen Sie wirklich ohne speichern beenden ?"
+
+#: ../src/plugin.py:260
+msgid "Reset ShootYourScreen settings to defaults?"
+msgstr "Sollen die Standardeinstellungen übernommen werden ?"
+
