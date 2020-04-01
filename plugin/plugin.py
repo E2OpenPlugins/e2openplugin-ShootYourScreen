@@ -160,9 +160,9 @@ class ShootYourScreenConfig(Screen, ConfigListScreen):
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/ShootYourScreen/pic/button_red.png" zPosition="2" position="10,370" size="25,25" alphatest="on" />
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/ShootYourScreen/pic/button_green.png" zPosition="2" position="130,370" size="25,25" alphatest="on" />
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/ShootYourScreen/pic/button_yellow.png" zPosition="2" position="270,370" size="25,25" alphatest="on" />
-		<widget name="buttonred" position="40,372" size="100,20" valign="center" halign="left" zPosition="2" foregroundColor="white" font="Regular;18"/>
-		<widget name="buttongreen" position="160,372" size="100,20" valign="center" halign="left" zPosition="2" foregroundColor="white" font="Regular;18"/>
-		<widget name="buttonyellow" position="300,372" size="100,20" valign="center" halign="left" zPosition="2" foregroundColor="white" font="Regular;18"/>
+		<widget name="key_red" position="40,372" size="100,20" valign="center" halign="left" zPosition="2" foregroundColor="white" font="Regular;18"/>
+		<widget name="key_green" position="160,372" size="100,20" valign="center" halign="left" zPosition="2" foregroundColor="white" font="Regular;18"/>
+		<widget name="key_yellow" position="300,372" size="100,20" valign="center" halign="left" zPosition="2" foregroundColor="white" font="Regular;18"/>
 		</screen>"""
 
 	def __init__(self,session):
@@ -173,9 +173,9 @@ class ShootYourScreenConfig(Screen, ConfigListScreen):
 
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 
-		self["buttonred"] = Label(_("Exit"))
-		self["buttongreen"] = Label(_("Save"))
-		self["buttonyellow"] = Label(_("Default"))
+		self["key_red"] = Label(_("Exit"))
+		self["key_green"] = Label(_("Save"))
+		self["key_yellow"] = Label(_("Default"))
 		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
 			{
 				"green": self.keyGreen,
