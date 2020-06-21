@@ -14,6 +14,8 @@
 
 # camera icon is taken from oxygen icon theme for KDE 4
 
+from __future__ import absolute_import
+from __future__ import print_function
 from enigma import eActionMap, eConsoleAppContainer
 from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigListScreen
@@ -28,7 +30,7 @@ from Tools.BoundFunction import boundFunction
 from datetime import datetime
 from time import time as systime
 from os import system, path, mkdir, makedirs
-from __init__ import _
+from .__init__ import _
 
 pluginversion = "Version: 0.2"
 config.plugins.shootyourscreen = ConfigSubsection()
@@ -88,7 +90,7 @@ class getScreenshot:
 
 	def grabScreenshot(self, ret = None):
 		filename = self.getFilename()
-		print "[ShootYourScreen] grab screenshot to %s" % filename
+		print("[ShootYourScreen] grab screenshot to %s" % filename)
 		cmd = "grab"
 		if not config.plugins.shootyourscreen.picturetype.value == "all":
 			cmdoptiontype = " " + str(config.plugins.shootyourscreen.picturetype.value)
@@ -120,8 +122,8 @@ class getScreenshot:
 						file.write(data)
 					msg_text = _("Screenshot successfully saved as:\n%s") % filename
 					msg_type = MessageBox.TYPE_INFO
-				except Exception, e:
-					print "[ShootYourScreen] Error creating file", e
+				except Exception as e:
+					print("[ShootYourScreen] Error creating file", e)
 					error = True
 			else:
 				error = True
@@ -165,9 +167,9 @@ class ShootYourScreenConfig(Screen, ConfigListScreen):
 		<widget name="key_yellow" position="300,372" size="100,20" valign="center" halign="left" zPosition="2" foregroundColor="white" font="Regular;18"/>
 		</screen>"""
 
-	def __init__(self,session):
+	def __init__(self, session):
 		self.session = session
-		Screen.__init__(self,session)
+		Screen.__init__(self, session)
 		
 		self.createConfigList()
 
@@ -214,7 +216,7 @@ class ShootYourScreenConfig(Screen, ConfigListScreen):
 
 	def keyGreen(self):
 		self.save()
-		self.close(False,self.session)
+		self.close(False, self.session)
 
 	def cancel(self):
 		if self["config"].isChanged():
@@ -222,25 +224,25 @@ class ShootYourScreenConfig(Screen, ConfigListScreen):
 		else:
 			for x in self["config"].list:
 				x[1].cancel()
-			self.close(False,self.session)
+			self.close(False, self.session)
 
 	def cancelConfirm(self, result):
 		if result is None or result is False:
-			print "[ShootYourScreen] Cancel not confirmed."
+			print("[ShootYourScreen] Cancel not confirmed.")
 		else:
-			print "[ShootYourScreen] Cancel confirmed. Configchanges will be lost."
+			print("[ShootYourScreen] Cancel confirmed. Configchanges will be lost.")
 			for x in self["config"].list:
 				x[1].cancel()
-			self.close(False,self.session)
+			self.close(False, self.session)
 
 	def revert(self):
 		self.session.openWithCallback(self.keyYellowConfirm, MessageBox, _("Reset ShootYourScreen settings to defaults?"), MessageBox.TYPE_YESNO, timeout = 20, default = True)
 
 	def keyYellowConfirm(self, confirmed):
 		if not confirmed:
-			print "[ShootYourScreen] Reset to defaults not confirmed."
+			print("[ShootYourScreen] Reset to defaults not confirmed.")
 		else:
-			print "[ShootYourScreen] Setting Configuration to defaults."
+			print("[ShootYourScreen] Setting Configuration to defaults.")
 			config.plugins.shootyourscreen.enable.setValue(1)
 			config.plugins.shootyourscreen.switchhelp.setValue(1)
 			config.plugins.shootyourscreen.path.setValue("/media/hdd")
@@ -252,12 +254,12 @@ class ShootYourScreenConfig(Screen, ConfigListScreen):
 			self.save()
 
 def autostart(reason, **kwargs):
-	if kwargs.has_key("session") and reason == 0:
-		print "[ShootYourScreen] start...."
+	if "session" in kwargs and reason == 0:
+		print("[ShootYourScreen] start....")
 		getScreenshot()
 
 def startSetup(session, **kwargs):
-		print "[ShootYourScreen] start configuration"
+		print("[ShootYourScreen] start configuration")
 		session.open(ShootYourScreenConfig)
 
 def Plugins(**kwargs):
