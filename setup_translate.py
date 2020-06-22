@@ -1,7 +1,6 @@
 from __future__ import print_function
 # Language extension for distutils Python scripts. Based on this concept:
 # http://wiki.maemo.org/Internationalize_a_Python_application
-from future.utils import raise_
 from distutils import cmd
 from distutils.command.build import build as _build
 import glob
@@ -31,7 +30,7 @@ class build_trans(cmd.Command):
 						dest = os.path.join(destdir, lang_domain[:-3] + 'mo')
 						print("Language compile %s -> %s" % (src, dest))
 						if os.system("msgfmt '%s' -o '%s'" % (src, dest)) != 0:
-							raise_(Exception, "Failed to compile: " + src)
+							raise (Exception, "Failed to compile: " + src)
 		else:
 			print("we got no domain -> no translation was compiled")
 
