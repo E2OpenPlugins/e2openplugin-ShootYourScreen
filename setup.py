@@ -2,7 +2,7 @@ from distutils.core import setup
 import setup_translate
 
 pkg = 'Extensions.ShootYourScreen'
-setup (name='enigma2-plugin-extensions-shootyourscreen',
+setup(name='enigma2-plugin-extensions-shootyourscreen',
 	version='0.2',
 	description='make Screenshots with your VU+',
 	packages=[pkg],
