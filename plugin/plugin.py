@@ -41,6 +41,7 @@ config.plugins.shootyourscreen.picturetype = ConfigSelection(default="all", choi
 config.plugins.shootyourscreen.picturesize = ConfigSelection(default="default", choices=[("default", _("Skin resolution")), ("-r 480", "480"), ("-r 576", "576"), ("-r 720", "720"), ("-r 1280", "1280"), ("-r 1920", "1920")])
 config.plugins.shootyourscreen.timeout = ConfigSelection(default="3", choices=[("1", "1 sec"), ("3", "3 sec"), ("5", "5 sec"), ("10", "10 sec"), ("off", _("no message")), ("0", _("no timeout"))])
 
+
 def getPicturePath():
 	picturepath = config.plugins.shootyourscreen.path.value
 	if picturepath.endswith('/'):
@@ -54,6 +55,7 @@ def getPicturePath():
 	except OSError:
 		self.session.open(MessageBox, _("Sorry, your device for screenshots is not writeable.\n\nPlease choose another one."), MessageBox.TYPE_INFO, timeout=10)
 	return picturepath
+
 
 class getScreenshot:
 	def __init__(self):
@@ -153,6 +155,7 @@ class getScreenshot:
 			screenshotfile = picturepath + '/' + screenshottime + fileextension
 		return screenshotfile
 
+
 class ShootYourScreenConfig(Screen, ConfigListScreen):
 	skin = """
 		<screen position="center,center" size="650,400" title="ShootYourScreen for VU+" >
@@ -251,14 +254,17 @@ class ShootYourScreenConfig(Screen, ConfigListScreen):
 			config.plugins.shootyourscreen.timeout.setValue("3")
 			self.save()
 
+
 def autostart(reason, **kwargs):
 	if kwargs.has_key("session") and reason == 0:
 		print "[ShootYourScreen] start...."
 		getScreenshot()
 
+
 def startSetup(session, **kwargs):
 		print "[ShootYourScreen] start configuration"
 		session.open(ShootYourScreenConfig)
+
 
 def Plugins(**kwargs):
 			return [PluginDescriptor(where=PluginDescriptor.WHERE_SESSIONSTART, fnc=autostart),
