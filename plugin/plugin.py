@@ -34,12 +34,13 @@ pluginversion = "Version: 0.2"
 config.plugins.shootyourscreen = ConfigSubsection()
 config.plugins.shootyourscreen.enable = ConfigEnableDisable(default=True)
 config.plugins.shootyourscreen.switchhelp = ConfigYesNo(default=True)
-config.plugins.shootyourscreen.path = ConfigSelection(default = "/media/hdd", choices = [("/media/hdd"), ("/media/usb"), ("/media/hdd1"), ("/media/usb1"), ("/tmp", "/tmp")])
-config.plugins.shootyourscreen.pictureformat = ConfigSelection(default = "jpg", choices = [("", "bmp"), ("-j", "jpg"), ("-p", "png")])
-config.plugins.shootyourscreen.jpegquality = ConfigSelection(default = "100", choices = [("10"), ("20"), ("40"), ("60"), ("80"), ("100")])
-config.plugins.shootyourscreen.picturetype = ConfigSelection(default = "all", choices = [("all", "OSD + Video"), ("-v", "Video"), ("-o", "OSD")])
-config.plugins.shootyourscreen.picturesize = ConfigSelection(default = "default", choices = [("default", _("Skin resolution")), ("-r 480", "480"), ("-r 576", "576"), ("-r 720", "720"), ("-r 1280", "1280"), ("-r 1920", "1920")])
-config.plugins.shootyourscreen.timeout = ConfigSelection(default = "3", choices = [("1", "1 sec"), ("3", "3 sec"), ("5", "5 sec"), ("10", "10 sec"), ("off", _("no message")), ("0", _("no timeout"))])
+config.plugins.shootyourscreen.path = ConfigSelection(default="/media/hdd", choices=[("/media/hdd"), ("/media/usb"), ("/media/hdd1"), ("/media/usb1"), ("/tmp", "/tmp")])
+config.plugins.shootyourscreen.pictureformat = ConfigSelection(default="jpg", choices=[("", "bmp"), ("-j", "jpg"), ("-p", "png")])
+config.plugins.shootyourscreen.jpegquality = ConfigSelection(default="100", choices=[("10"), ("20"), ("40"), ("60"), ("80"), ("100")])
+config.plugins.shootyourscreen.picturetype = ConfigSelection(default="all", choices=[("all", "OSD + Video"), ("-v", "Video"), ("-o", "OSD")])
+config.plugins.shootyourscreen.picturesize = ConfigSelection(default="default", choices=[("default", _("Skin resolution")), ("-r 480", "480"), ("-r 576", "576"), ("-r 720", "720"), ("-r 1280", "1280"), ("-r 1920", "1920")])
+config.plugins.shootyourscreen.timeout = ConfigSelection(default="3", choices=[("1", "1 sec"), ("3", "3 sec"), ("5", "5 sec"), ("10", "10 sec"), ("off", _("no message")), ("0", _("no timeout"))])
+
 
 def getPicturePath():
 	picturepath = config.plugins.shootyourscreen.path.value
@@ -52,8 +53,9 @@ def getPicturePath():
 		if (path.exists(picturepath) == False):
 			makedirs(picturepath)
 	except OSError:
-		self.session.open(MessageBox, _("Sorry, your device for screenshots is not writeable.\n\nPlease choose another one."), MessageBox.TYPE_INFO, timeout = 10)
+		self.session.open(MessageBox, _("Sorry, your device for screenshots is not writeable.\n\nPlease choose another one."), MessageBox.TYPE_INFO, timeout=10)
 	return picturepath
+
 
 class getScreenshot:
 	def __init__(self):
@@ -69,7 +71,7 @@ class getScreenshot:
 						self.previousflag = flag
 						self.grabScreenshot()
 						return 1
-					if self.previousflag == 3 and flag ==1:
+					if self.previousflag == 3 and flag == 1:
 						self.previousflag = 0
 						return 1
 				else:
@@ -81,12 +83,12 @@ class getScreenshot:
 					if flag == 1 and self.previousflag == 0:
 						self.grabScreenshot()
 						return 1
-					if self.previousflag == 3 and flag ==1:
+					if self.previousflag == 3 and flag == 1:
 						self.previousflag = 0
 						return 0
 		return 0
 
-	def grabScreenshot(self, ret = None):
+	def grabScreenshot(self, ret=None):
 		filename = self.getFilename()
 		print "[ShootYourScreen] grab screenshot to %s" % filename
 		cmd = "grab"
@@ -105,12 +107,12 @@ class getScreenshot:
 		extra_args = (filename)
 		self.ScreenshotConsole.ePopen(cmd, self.gotScreenshot, extra_args)
 
-	def gotScreenshot(self, data, retval, extra_args = None):
+	def gotScreenshot(self, data, retval, extra_args=None):
 		if extra_args is not None:
 			filename = extra_args
 		else:
 			filename = ""
-		
+
 		if not config.plugins.shootyourscreen.timeout.value == "off":
 			messagetimeout = int(config.plugins.shootyourscreen.timeout.value)
 			error = False
@@ -128,7 +130,7 @@ class getScreenshot:
 			if error:
 				msg_text = _("Grabbing Screenshot failed !!!")
 				msg_type = MessageBox.TYPE_ERROR
-			AddNotification(MessageBox, msg_text, MessageBox.TYPE_INFO, timeout = messagetimeout)
+			AddNotification(MessageBox, msg_text, MessageBox.TYPE_INFO, timeout=messagetimeout)
 		else:
 			pass
 
@@ -138,7 +140,7 @@ class getScreenshot:
 		now = now.strftime("%Y-%m-%d_%H-%M-%S")
 
 		screenshottime = "screenshot_" + now
-		
+
 		if config.plugins.shootyourscreen.pictureformat.getText() == "bmp":
 			fileextension = ".bmp"
 		elif config.plugins.shootyourscreen.pictureformat.getText() == "jpg":
@@ -153,6 +155,7 @@ class getScreenshot:
 			screenshotfile = picturepath + '/' + screenshottime + fileextension
 		return screenshotfile
 
+
 class ShootYourScreenConfig(Screen, ConfigListScreen):
 	skin = """
 		<screen position="center,center" size="650,400" title="ShootYourScreen for VU+" >
@@ -165,13 +168,13 @@ class ShootYourScreenConfig(Screen, ConfigListScreen):
 		<widget name="key_yellow" position="300,372" size="100,20" valign="center" halign="left" zPosition="2" foregroundColor="white" font="Regular;18"/>
 		</screen>"""
 
-	def __init__(self,session):
+	def __init__(self, session):
 		self.session = session
-		Screen.__init__(self,session)
-		
+		Screen.__init__(self, session)
+
 		self.createConfigList()
 
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 
 		self["key_red"] = Label(_("Exit"))
 		self["key_green"] = Label(_("Save"))
@@ -184,7 +187,7 @@ class ShootYourScreenConfig(Screen, ConfigListScreen):
 				"cancel": self.cancel,
 				"ok": self.keyGreen,
 			}, -2)
-			
+
 		self.onShown.append(self.setWindowTitle)
 
 	def setWindowTitle(self):
@@ -214,15 +217,15 @@ class ShootYourScreenConfig(Screen, ConfigListScreen):
 
 	def keyGreen(self):
 		self.save()
-		self.close(False,self.session)
+		self.close(False, self.session)
 
 	def cancel(self):
 		if self["config"].isChanged():
-			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), MessageBox.TYPE_YESNO, default = True)
+			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), MessageBox.TYPE_YESNO, default=True)
 		else:
 			for x in self["config"].list:
 				x[1].cancel()
-			self.close(False,self.session)
+			self.close(False, self.session)
 
 	def cancelConfirm(self, result):
 		if result is None or result is False:
@@ -231,10 +234,10 @@ class ShootYourScreenConfig(Screen, ConfigListScreen):
 			print "[ShootYourScreen] Cancel confirmed. Configchanges will be lost."
 			for x in self["config"].list:
 				x[1].cancel()
-			self.close(False,self.session)
+			self.close(False, self.session)
 
 	def revert(self):
-		self.session.openWithCallback(self.keyYellowConfirm, MessageBox, _("Reset ShootYourScreen settings to defaults?"), MessageBox.TYPE_YESNO, timeout = 20, default = True)
+		self.session.openWithCallback(self.keyYellowConfirm, MessageBox, _("Reset ShootYourScreen settings to defaults?"), MessageBox.TYPE_YESNO, timeout=20, default=True)
 
 	def keyYellowConfirm(self, confirmed):
 		if not confirmed:
@@ -251,15 +254,18 @@ class ShootYourScreenConfig(Screen, ConfigListScreen):
 			config.plugins.shootyourscreen.timeout.setValue("3")
 			self.save()
 
+
 def autostart(reason, **kwargs):
 	if kwargs.has_key("session") and reason == 0:
 		print "[ShootYourScreen] start...."
 		getScreenshot()
 
+
 def startSetup(session, **kwargs):
 		print "[ShootYourScreen] start configuration"
 		session.open(ShootYourScreenConfig)
 
+
 def Plugins(**kwargs):
-			return [PluginDescriptor(where = PluginDescriptor.WHERE_SESSIONSTART, fnc = autostart),
-				PluginDescriptor(name = "ShootYourScreen Setup", description = _("make Screenshots with your VU+"), where = [PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU], icon="shootyourscreen.png", fnc=startSetup)]
+			return [PluginDescriptor(where=PluginDescriptor.WHERE_SESSIONSTART, fnc=autostart),
+				PluginDescriptor(name="ShootYourScreen Setup", description=_("make Screenshots with your VU+"), where=[PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU], icon="shootyourscreen.png", fnc=startSetup)]
