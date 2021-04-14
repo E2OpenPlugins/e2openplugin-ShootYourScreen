@@ -165,9 +165,9 @@ class ShootYourScreenConfig(Screen, ConfigListScreen):
 		<widget name="key_yellow" position="300,372" size="100,20" valign="center" halign="left" zPosition="2" foregroundColor="white" font="Regular;18"/>
 		</screen>"""
 
-	def __init__(self,session):
+	def __init__(self, session):
 		self.session = session
-		Screen.__init__(self,session)
+		Screen.__init__(self, session)
 		
 		self.createConfigList()
 
@@ -214,7 +214,7 @@ class ShootYourScreenConfig(Screen, ConfigListScreen):
 
 	def keyGreen(self):
 		self.save()
-		self.close(False,self.session)
+		self.close(False, self.session)
 
 	def cancel(self):
 		if self["config"].isChanged():
@@ -222,7 +222,7 @@ class ShootYourScreenConfig(Screen, ConfigListScreen):
 		else:
 			for x in self["config"].list:
 				x[1].cancel()
-			self.close(False,self.session)
+			self.close(False, self.session)
 
 	def cancelConfirm(self, result):
 		if result is None or result is False:
@@ -231,7 +231,7 @@ class ShootYourScreenConfig(Screen, ConfigListScreen):
 			print "[ShootYourScreen] Cancel confirmed. Configchanges will be lost."
 			for x in self["config"].list:
 				x[1].cancel()
-			self.close(False,self.session)
+			self.close(False, self.session)
 
 	def revert(self):
 		self.session.openWithCallback(self.keyYellowConfirm, MessageBox, _("Reset ShootYourScreen settings to defaults?"), MessageBox.TYPE_YESNO, timeout=20, default=True)
