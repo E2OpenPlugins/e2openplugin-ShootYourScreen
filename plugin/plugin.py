@@ -69,7 +69,7 @@ class getScreenshot:
 						self.previousflag = flag
 						self.grabScreenshot()
 						return 1
-					if self.previousflag == 3 and flag ==1:
+					if self.previousflag == 3 and flag == 1:
 						self.previousflag = 0
 						return 1
 				else:
@@ -81,7 +81,7 @@ class getScreenshot:
 					if flag == 1 and self.previousflag == 0:
 						self.grabScreenshot()
 						return 1
-					if self.previousflag == 3 and flag ==1:
+					if self.previousflag == 3 and flag == 1:
 						self.previousflag = 0
 						return 0
 		return 0
