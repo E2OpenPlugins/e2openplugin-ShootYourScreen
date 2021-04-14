@@ -112,7 +112,7 @@ class getScreenshot:
 			filename = extra_args
 		else:
 			filename = ""
-		
+
 		if not config.plugins.shootyourscreen.timeout.value == "off":
 			messagetimeout = int(config.plugins.shootyourscreen.timeout.value)
 			error = False
@@ -140,7 +140,7 @@ class getScreenshot:
 		now = now.strftime("%Y-%m-%d_%H-%M-%S")
 
 		screenshottime = "screenshot_" + now
-		
+
 		if config.plugins.shootyourscreen.pictureformat.getText() == "bmp":
 			fileextension = ".bmp"
 		elif config.plugins.shootyourscreen.pictureformat.getText() == "jpg":
@@ -171,7 +171,7 @@ class ShootYourScreenConfig(Screen, ConfigListScreen):
 	def __init__(self, session):
 		self.session = session
 		Screen.__init__(self, session)
-		
+
 		self.createConfigList()
 
 		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
@@ -187,7 +187,7 @@ class ShootYourScreenConfig(Screen, ConfigListScreen):
 				"cancel": self.cancel,
 				"ok": self.keyGreen,
 			}, -2)
-			
+
 		self.onShown.append(self.setWindowTitle)
 
 	def setWindowTitle(self):
