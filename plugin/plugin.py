@@ -60,6 +60,8 @@ def getPicturePath():
 class getScreenshot:
 	def __init__(self):
 		self.ScreenshotConsole = Console()
+		if hasattr(self.ScreenshotConsole, 'binary'):
+			self.ScreenshotConsole.binary = True
 		self.previousflag = 0
 		eActionMap.getInstance().bindAction('', -0x7FFFFFFF, self.screenshotKey)
 
