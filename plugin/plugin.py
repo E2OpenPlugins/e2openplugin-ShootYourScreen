@@ -16,7 +16,7 @@
 
 from __future__ import absolute_import
 from __future__ import print_function
-from enigma import eActionMap, eConsoleAppContainer
+from enigma import eActionMap
 from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, getConfigListEntry, ConfigSubsection, ConfigSelection, ConfigEnableDisable, ConfigYesNo, ConfigInteger
@@ -26,10 +26,9 @@ from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Tools.Notifications import AddNotification
-from Tools.BoundFunction import boundFunction
 from datetime import datetime
 from time import time as systime
-from os import system, path, mkdir, makedirs
+from os import path, makedirs
 from .__init__ import _
 
 pluginversion = "Version: 0.2"
@@ -54,7 +53,7 @@ def getPicturePath():
 		if (path.exists(picturepath) == False):
 			makedirs(picturepath)
 	except OSError:
-		self.session.open(MessageBox, _("Sorry, your device for screenshots is not writeable.\n\nPlease choose another one."), MessageBox.TYPE_INFO, timeout = 10)
+		AddNotification(MessageBox, _("Sorry, your device for screenshots is not writeable.\n\nPlease choose another one."), MessageBox.TYPE_ERROR, timeout = 10)
 	return picturepath
 
 class getScreenshot:
@@ -118,12 +117,12 @@ class getScreenshot:
 		if not config.plugins.shootyourscreen.timeout.value == "off":
 			messagetimeout = int(config.plugins.shootyourscreen.timeout.value)
 			error = False
+			msg_type = MessageBox.TYPE_INFO
 			if retval == 0 and filename:
 				try:
 					with open(filename, "wb") as file:
 						file.write(data)
 					msg_text = _("Screenshot successfully saved as:\n%s") % filename
-					msg_type = MessageBox.TYPE_INFO
 				except Exception as e:
 					print("[ShootYourScreen] Error creating file", e)
 					error = True
@@ -132,7 +131,7 @@ class getScreenshot:
 			if error:
 				msg_text = _("Grabbing Screenshot failed !!!")
 				msg_type = MessageBox.TYPE_ERROR
-			AddNotification(MessageBox, msg_text, MessageBox.TYPE_INFO, timeout = messagetimeout)
+			AddNotification(MessageBox, msg_text, msg_type, timeout = messagetimeout)
 		else:
 			pass
 
@@ -261,9 +260,9 @@ def autostart(reason, **kwargs):
 		getScreenshot()
 
 def startSetup(session, **kwargs):
-		print("[ShootYourScreen] start configuration")
-		session.open(ShootYourScreenConfig)
+	print("[ShootYourScreen] start configuration")
+	session.open(ShootYourScreenConfig)
 
 def Plugins(**kwargs):
-			return [PluginDescriptor(where = PluginDescriptor.WHERE_SESSIONSTART, fnc = autostart),
-				PluginDescriptor(name = "ShootYourScreen Setup", description = _("make Screenshots with your VU+"), where = [PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU], icon="shootyourscreen.png", fnc=startSetup)]
+	return [PluginDescriptor(where = PluginDescriptor.WHERE_SESSIONSTART, fnc = autostart),
+		PluginDescriptor(name = "ShootYourScreen Setup", description = _("make Screenshots with your VU+"), where = [PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU], icon="shootyourscreen.png", fnc=startSetup)]
