@@ -19,94 +19,113 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../plugin.py:41
+#: ../plugin.py:42
 msgid "Skin resolution"
 msgstr ""
 
-#: ../plugin.py:42
+#: ../plugin.py:43
 msgid "no message"
 msgstr ""
 
-#: ../plugin.py:42
+#: ../plugin.py:43
 msgid "no timeout"
 msgstr ""
 
-#: ../plugin.py:55
+#: ../plugin.py:58
 msgid ""
 "Sorry, your device for screenshots is not writeable.\n"
 "\n"
 "Please choose another one."
 msgstr ""
 
-#: ../plugin.py:118
+#: ../plugin.py:128
 #, python-format
 msgid ""
 "Screenshot successfully saved as:\n"
 "%s"
 msgstr ""
 
-#: ../plugin.py:121
+#: ../plugin.py:135
 msgid "Grabbing Screenshot failed !!!"
 msgstr ""
 
-#: ../plugin.py:168
+#: ../plugin.py:182
 msgid "Exit"
 msgstr ""
 
-#: ../plugin.py:169
+#: ../plugin.py:183
 msgid "Save"
 msgstr ""
 
-#: ../plugin.py:170
+#: ../plugin.py:184
 msgid "Default"
 msgstr ""
 
-#: ../plugin.py:183
+#: ../plugin.py:197
 #, python-format
-msgid "ShootYourScreen for VU+ STB - %s"
+msgid "ShootYourScreen %s"
 msgstr ""
 
-#: ../plugin.py:187
+#: ../plugin.py:201
 msgid "Enable ShootYourScreen :"
 msgstr ""
 
-#: ../plugin.py:189
+#: ../plugin.py:203
 msgid "Screenshot of :"
 msgstr ""
 
-#: ../plugin.py:190
+#: ../plugin.py:204
 msgid "Format for screenshots :"
 msgstr ""
 
-#: ../plugin.py:192
+#: ../plugin.py:206
 msgid "Quality of jpg picture :"
 msgstr ""
 
-#: ../plugin.py:193
+#: ../plugin.py:207
 msgid "Picture size (width) :"
 msgstr ""
 
-#: ../plugin.py:194
+#: ../plugin.py:208
 msgid "Path for screenshots :"
 msgstr ""
 
-#: ../plugin.py:195
-msgid "Switch Help and Help long button :"
+#: ../plugin.py:209
+msgid "Select a button to take a screenshot :"
 msgstr ""
 
-#: ../plugin.py:196
+#: ../plugin.py:238
+msgid "Only button ' "
+msgstr ""
+
+#: ../plugin.py:238
+msgid " long ' can be used."
+msgstr ""
+
+#: ../plugin.py:241
+msgid "Use the ' "
+msgstr ""
+
+#: ../plugin.py:241
+msgid " ' button instead of ' "
+msgstr ""
+
+#: ../plugin.py:241
+msgid " long ' :"
+msgstr ""
+
+#: ../plugin.py:242
 msgid "Timeout for info message :"
 msgstr ""
 
-#: ../plugin.py:213
+#: ../plugin.py:259
 msgid "Really close without saving settings?"
 msgstr ""
 
-#: ../plugin.py:229
+#: ../plugin.py:275
 msgid "Reset ShootYourScreen settings to defaults?"
 msgstr ""
 
-#: ../plugin.py:257
-msgid "make Screenshots with your VU+"
+#: ../plugin.py:303
+msgid "make Screenshots"
 msgstr ""
-

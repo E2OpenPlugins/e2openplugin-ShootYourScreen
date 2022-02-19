@@ -1,3 +1,8 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: shoot your screen Persian Translation\n"
@@ -14,93 +19,89 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-Language: Persian\n"
 "X-Poedit-Country: IRAN, ISLAMIC REPUBLIC OF\n"
-"X-Poedit-SearchPath-0: ../src\n"
+"X-Poedit-SearchPath-0: ..\n"
 
-#: ../src/plugin.py:37
 msgid "Skin resolution"
 msgstr "رزولیشن پوسته ها"
 
-#: ../src/plugin.py:38
 msgid "no message"
 msgstr "بدون پیام"
 
-#: ../src/plugin.py:42
-#: ../src/plugin.py:43
-msgid "make Screenshots with your VU+"
-msgstr "ساخت تصاویر با استفاده از رسیور ویو پلاس"
+msgid "no timeout"
+msgstr ""
 
-#: ../src/plugin.py:66
 msgid ""
 "Sorry, your device for screenshots is not writeable.\n"
 "\n"
 "Please choose another one."
 msgstr ""
 
-#: ../src/plugin.py:128
 #, python-format
 msgid ""
 "Screenshot successfully saved as:\n"
 "%s"
 msgstr ""
 
-#: ../src/plugin.py:130
 msgid "Grabbing Screenshot failed !!!"
 msgstr "گرفتن عکس ناموفق بود !!!"
 
-#: ../src/plugin.py:199
 msgid "Exit"
 msgstr "خارج شدن"
 
-#: ../src/plugin.py:200
 msgid "Save"
 msgstr "ذخیره سازی"
 
-#: ../src/plugin.py:201
 msgid "Default"
 msgstr "پیش فرض"
 
-#: ../src/plugin.py:214
 #, python-format
-msgid "ShootYourScreen for VU+ STB - %s"
+msgid "ShootYourScreen %s"
 msgstr ""
 
-#: ../src/plugin.py:218
 msgid "Enable ShootYourScreen :"
 msgstr "فعال سازی تصویر عکس گرفته شده در صفحه نمایش شما"
 
-#: ../src/plugin.py:220
 msgid "Screenshot of :"
 msgstr "تصاویری از :"
 
-#: ../src/plugin.py:221
 msgid "Format for screenshots :"
 msgstr "فرمت تصاویر"
 
-#: ../src/plugin.py:223
 msgid "Quality of jpg picture :"
 msgstr "کیفیت تصاویر "
 
-#: ../src/plugin.py:224
 msgid "Picture size (width) :"
 msgstr "اندازه تصاویر"
 
-#: ../src/plugin.py:225
 msgid "Path for screenshots :"
 msgstr "مسیر برای تصاویر"
 
-#: ../src/plugin.py:226
-msgid "Switch Help and Help long button :"
-msgstr "تغییر راهنما و نگاه داشتن طولانی دکمه راهنما "
+msgid "Select a button to take a screenshot :"
+msgstr ""
 
-#: ../src/plugin.py:227
+msgid "Only button ' "
+msgstr ""
+
+msgid " long ' can be used."
+msgstr ""
+
+msgid "Use the ' "
+msgstr ""
+
+msgid " ' button instead of ' "
+msgstr ""
+
+msgid " long ' :"
+msgstr ""
+
 msgid "Timeout for info message :"
 msgstr "اتمام زمان نمایش اطلاعات :"
 
-#: ../src/plugin.py:244
 msgid "Really close without saving settings?"
 msgstr "آیا واقعا بدون ذخیره سازی تنظیمات قصد بستن را دارید ؟"
 
-#: ../src/plugin.py:260
 msgid "Reset ShootYourScreen settings to defaults?"
 msgstr "بازگرداندن به تصویر پیش فرض و حذف تصویر عکس گرفته شده"
 
+msgid "make Screenshots"
+msgstr "ساخت تصاویر با استفاده از رسیور ویو پلاس"

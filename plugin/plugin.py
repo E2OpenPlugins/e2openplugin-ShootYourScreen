@@ -31,7 +31,7 @@ from time import time as systime
 from os import path, makedirs
 from .__init__ import _
 
-pluginversion = "Version: 0.2"
+pluginversion = "Version: 0.3"
 config.plugins.shootyourscreen = ConfigSubsection()
 config.plugins.shootyourscreen.enable = ConfigEnableDisable(default=True)
 config.plugins.shootyourscreen.switchhelp = ConfigYesNo(default=True)
@@ -41,6 +41,8 @@ config.plugins.shootyourscreen.jpegquality = ConfigSelection(default = "100", ch
 config.plugins.shootyourscreen.picturetype = ConfigSelection(default = "all", choices = [("all", "OSD + Video"), ("-v", "Video"), ("-o", "OSD")])
 config.plugins.shootyourscreen.picturesize = ConfigSelection(default = "default", choices = [("default", _("Skin resolution")), ("-r 480", "480"), ("-r 576", "576"), ("-r 720", "720"), ("-r 1280", "1280"), ("-r 1920", "1920")])
 config.plugins.shootyourscreen.timeout = ConfigSelection(default = "3", choices = [("1", "1 sec"), ("3", "3 sec"), ("5", "5 sec"), ("10", "10 sec"), ("off", _("no message")), ("0", _("no timeout"))])
+config.plugins.shootyourscreen.buttonchoice = ConfigSelection(default = "138", choices = [("113", _("Mute")), ("138", _("Help")), ("358", " Info"), ("362", _("Timer")), ("365", _("EPG")), ("377", _("TV")), ("385", _("Radio")), ("388", _("Text")), ("392", _("Audio")), ("398", _("Red")), ("399", _("Green")), ("400", _("Yellow")), ("401", _("Blue"))])
+config.plugins.shootyourscreen.dummy = ConfigSelection(default = "1", choices = [("1", " ")])
 
 def getPicturePath():
 	picturepath = config.plugins.shootyourscreen.path.value
@@ -65,8 +67,9 @@ class getScreenshot:
 		eActionMap.getInstance().bindAction('', -0x7FFFFFFF, self.screenshotKey)
 
 	def screenshotKey(self, key, flag):
+		selectedbutton = int(config.plugins.shootyourscreen.buttonchoice.value)
 		if config.plugins.shootyourscreen.enable.value:
-			if key == 138:
+			if key == selectedbutton:
 				if not config.plugins.shootyourscreen.switchhelp.value:
 					if flag == 3:
 						self.previousflag = flag
@@ -158,7 +161,7 @@ class getScreenshot:
 
 class ShootYourScreenConfig(Screen, ConfigListScreen):
 	skin = """
-		<screen position="center,center" size="650,400" title="ShootYourScreen for VU+" >
+		<screen position="center,center" size="650,400" title="ShootYourScreen" >
 		<widget name="config" position="10,10" size="630,350" scrollbarMode="showOnDemand" />
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/ShootYourScreen/pic/button_red.png" zPosition="2" position="10,370" size="25,25" alphatest="on" />
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/ShootYourScreen/pic/button_green.png" zPosition="2" position="130,370" size="25,25" alphatest="on" />
@@ -191,7 +194,7 @@ class ShootYourScreenConfig(Screen, ConfigListScreen):
 		self.onShown.append(self.setWindowTitle)
 
 	def setWindowTitle(self):
-		self.setTitle(_("ShootYourScreen for VU+ STB - %s") % pluginversion)
+		self.setTitle(_("ShootYourScreen %s") % pluginversion)
 
 	def createConfigList(self):
 		self.list = []
@@ -203,7 +206,39 @@ class ShootYourScreenConfig(Screen, ConfigListScreen):
 				self.list.append(getConfigListEntry(_("Quality of jpg picture :"), config.plugins.shootyourscreen.jpegquality))
 			self.list.append(getConfigListEntry(_("Picture size (width) :"), config.plugins.shootyourscreen.picturesize))
 			self.list.append(getConfigListEntry(_("Path for screenshots :"), config.plugins.shootyourscreen.path))
-			self.list.append(getConfigListEntry(_("Switch Help and Help long button :"), config.plugins.shootyourscreen.switchhelp))
+			self.list.append(getConfigListEntry(_("Select a button to take a screenshot :"), config.plugins.shootyourscreen.buttonchoice))
+			check = config.plugins.shootyourscreen.buttonchoice.value
+			if check == "113":
+				buttonname = (_("Mute"))
+			elif check == "138":
+				buttonname = (_("Help"))
+			elif check == "358":
+				buttonname = (_("Info"))
+			elif check == "362":
+				buttonname = (_("Timer"))
+			elif check == "365":
+				buttonname = (_("EPG"))
+			elif check == "377":
+				buttonname = (_("TV"))
+			elif check == "385":
+				buttonname = (_("Radio"))
+			elif check == "388":
+				buttonname = (_("Text"))
+			elif check == "392":
+				buttonname = (_("Audio"))
+			elif check == "398":
+				buttonname = (_("Red"))
+			elif check == "399":
+				buttonname = (_("Green"))
+			elif check == "400":
+				buttonname = (_("Yellow"))
+			elif check == "401":
+				buttonname = (_("Blue"))
+			if check == '398' or check == '399' or check == '400':
+				self.list.append(getConfigListEntry(_("Only button ' ") + buttonname + _(" long ' can be used."), config.plugins.shootyourscreen.dummy))
+				config.plugins.shootyourscreen.switchhelp.setValue(0)
+			else:
+				self.list.append(getConfigListEntry(_("Use the ' ") + buttonname + _(" ' button instead of ' ") + buttonname + _(" long ' :"), config.plugins.shootyourscreen.switchhelp))
 			self.list.append(getConfigListEntry(_("Timeout for info message :"), config.plugins.shootyourscreen.timeout))
 
 	def changedEntry(self):
@@ -265,4 +300,4 @@ def startSetup(session, **kwargs):
 
 def Plugins(**kwargs):
 	return [PluginDescriptor(where = PluginDescriptor.WHERE_SESSIONSTART, fnc = autostart),
-		PluginDescriptor(name = "ShootYourScreen Setup", description = _("make Screenshots with your VU+"), where = [PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU], icon="shootyourscreen.png", fnc=startSetup)]
+			PluginDescriptor(name = "ShootYourScreen Setup", description = _("make Screenshots"), where = PluginDescriptor.WHERE_PLUGINMENU, icon="shootyourscreen.png", fnc=startSetup)]
